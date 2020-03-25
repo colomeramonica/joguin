@@ -20,7 +20,6 @@ public class projectilController : MonoBehaviour
 
     }
 
-    // Update is called once per frame
     void Update()
     {
         transform.position += directionToMove;
@@ -28,6 +27,15 @@ public class projectilController : MonoBehaviour
         lifeTime -= Time.deltaTime;
         if (lifeTime < 0)
             Destroy(this.gameObject);
+    }
 
+    void OnTriggerEnter(Collider other)
+    {
+        print(other.tag);
+        if (other.tag == "inimigo")
+        {
+            Destroy(other.gameObject);
+            Destroy(this.gameObject);
+        }
     }
 }
